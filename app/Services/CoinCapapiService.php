@@ -20,4 +20,9 @@ class CoinCapapiService
     {
         return Http::get("https://api.coincap.io/v2/assets/" . $crypto . "/history?interval=d1")->throw()->json();
     }
+
+    public function getExchanges()
+    {
+        return Http::get('https://api.coincap.io/v2/exchanges')->throw()->json();
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CryptoController;
+use App\Http\Controllers\ExchangeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -16,8 +17,9 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/',[CryptoController::class, 'index'])->middleware('auth')->name('index.crypto');
-Route::get('/currencies/{id}', [CryptoController::class, 'show'])->middleware('auth')->name('show.crypto');
+Route::get('/',[CryptoController::class, 'index'])->name('index.crypto');
+Route::get('/currencies/{id}', [CryptoController::class, 'show'])->name('show.crypto');
+Route::get('/ranking/exchanges', [ExchangeController::class, 'index'])->name('index.exchange');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

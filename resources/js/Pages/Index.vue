@@ -1,5 +1,5 @@
 <script setup>
-    import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+    import MainLayout from '@/Layouts/MainLayout.vue';
     import Table from '@/Components/Table.vue';
     import THead from '@/Components/THead.vue';
     import TData from '@/Components/TData.vue';
@@ -13,9 +13,9 @@
 
 <template>
 
-    <AuthenticatedLayout>
+    <MainLayout>
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="sm:px-6 lg:px-8">
                 <Table>
                     <template #headColumns>
                         <THead type="first" label="#"/>
@@ -53,6 +53,6 @@
                 </Table>
             </div>
         </div>
-    </AuthenticatedLayout>
+    </MainLayout>
 </template>
 

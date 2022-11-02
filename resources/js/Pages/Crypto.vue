@@ -1,5 +1,5 @@
 <script setup>
-    import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+    import MainLayout from '@/Layouts/MainLayout.vue';
     import Breadcrumb from '@/Components/Breadcrumb.vue';
     import CryptoInfo from '@/Components/CryptoInfo.vue';
     import ChartTest from '@/Components/ChartTest.vue';
@@ -12,9 +12,9 @@
 
 <template>
 
-    <AuthenticatedLayout>
+    <MainLayout>
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="sm:px-6 lg:px-8">
                 <Breadcrumb :coin="crypto.data.name">
                 </Breadcrumb>
                 <CryptoInfo :coin="crypto" :id="crypto.data.id">
@@ -39,6 +39,6 @@
 
             </div>
         </div>
-    </AuthenticatedLayout>
+    </MainLayout>
 </template>
 
