@@ -17,8 +17,8 @@ const chartData = {
       datasets: [
         {
           label: 'Price',
-          backgroundColor: '#ffdbdb',
-          borderColor: '#ff6385',
+          backgroundColor: '#dbdbff',
+          borderColor: '#7063ff',
           data: data
         }
       ]

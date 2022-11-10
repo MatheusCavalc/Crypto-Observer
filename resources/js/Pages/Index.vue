@@ -3,7 +3,6 @@
     import Table from '@/Components/Table.vue';
     import THead from '@/Components/THead.vue';
     import TData from '@/Components/TData.vue';
-    import TDataT from '@/Components/TDataT.vue';
     import TDataBar from '@/Components/TDataBar.vue';
     import { Link } from '@inertiajs/inertia-vue3';
 
@@ -37,14 +36,17 @@
                                 </Link>
                             </TData>
 
-                            <TDataT type="normal" :label="crypto.priceUsd">
-                            </TDataT>
+                            <TData type="normal">
+                                ${{Number(crypto.priceUsd).toLocaleString('pt-BR', {maximumFractionDigits: 2})}}
+                            </TData>
 
-                            <TDataT type="dynamic" :label="crypto.changePercent24Hr" per="%">
-                            </TDataT>
+                            <TData type="dynamic" :label="crypto.changePercent24Hr">
+                                {{Number(crypto.changePercent24Hr).toLocaleString('pt-BR', {maximumFractionDigits: 2})}}%
+                            </TData>
 
-                            <TDataT type="normal" :label="crypto.marketCapUsd">
-                            </TDataT>
+                            <TData type="normal">
+                                ${{Number(crypto.marketCapUsd).toLocaleString('pt-BR', {maximumFractionDigits: 0})}}
+                            </TData>
 
                             <TDataBar type="normal" :label="crypto.supply" minimumFractionDigits="0" maximumFractionDigits="0" :crypto=" crypto.symbol" :supply="crypto.supply" :maxSupply="crypto.maxSupply">
                             </TDataBar>

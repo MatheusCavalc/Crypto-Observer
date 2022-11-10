@@ -3,7 +3,6 @@
     import Table from '@/Components/Table.vue';
     import THead from '@/Components/THead.vue';
     import TData from '@/Components/TData.vue';
-    import TDataT from '@/Components/TDataT.vue';
     import { Link } from '@inertiajs/inertia-vue3';
 
     const { filters } = defineProps(['exchanges'])
@@ -33,15 +32,17 @@
                                 {{ exchange.name }}
                             </TData>
 
-                            <TDataT type="normal" :label="exchange.volumeUsd">
-                            </TDataT>
+                            <TData type="first">
+                                ${{Number(exchange.volumeUsd).toLocaleString('pt-BR', {maximumFractionDigits: 0})}}
+                            </TData>
 
-                            <TData type="normal">
+                            <TData type="first">
                                 {{ exchange.tradingPairs }}
                             </TData>
 
-                            <TDataT type="first" :label="exchange.percentTotalVolume" per="%">
-                            </TDataT>
+                            <TData type="first">
+                                {{Number(exchange.percentTotalVolume).toLocaleString('pt-BR', {maximumFractionDigits: 2})}}%
+                            </TData>
                         </tr>
                     </template>
                 </Table>
