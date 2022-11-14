@@ -5,6 +5,7 @@
     import ChartTest from '@/Components/ChartTest.vue';
     import CryptoStats from '@/Components/CryptoStats.vue';
     import TDataBarStats from '@/Components/TDataBarStats.vue';
+    import Chart from '@/Components/Chart.vue';
 
     const props = defineProps(['crypto', 'labels', 'data'])
 
@@ -30,8 +31,8 @@
                         </div>
 
                         <div class="col-span-6">
-                            <ChartTest :labels="labels" :data="data" :id="crypto.data.name">
-                            </ChartTest>
+                            <Chart :labels="labels" :data="data" :id="crypto.data.name">
+                            </Chart>
                         </div><div class="col-span-2"></div>
 
                     </div>
