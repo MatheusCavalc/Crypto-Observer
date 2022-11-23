@@ -7,13 +7,13 @@ const data = props.data
 
 const options = {
         chart: {
-          id: 'vuechart-example'
+          id: props.id + 'PriceInAYear'
         },
         xaxis: {
           categories: labels
         },
         title: {
-          text: 'Price in One Year',
+          text: 'Price in a year',
           align: 'left'
         },
         yaxis: {

@@ -23,9 +23,7 @@ getCryptoPrice();
    <div class="container mt-8">
         <div class="grid grid-cols-2 gap-4 static">
             <div>
-                <span class="text-2xl">{{props.coin.data.name}}</span>
-                <span class="bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-indigo-200 dark:text-indigo-900">{{props.coin.data.symbol}}</span>
-                <a href="">#</a>
+                <p class="text-2xl">{{props.coin.data.name}} <span class="bg-indigo-100 text-indigo-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-indigo-200 dark:text-indigo-900">{{props.coin.data.symbol}}</span></p>
             </div>
 
             <div class="place-self-end">
