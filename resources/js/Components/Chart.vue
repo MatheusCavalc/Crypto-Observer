@@ -2,15 +2,18 @@
 import VueApexCharts from "vue3-apexcharts";
 
 const props = defineProps(['labels', 'data', 'id'])
-const labels = props.labels
-const data = props.data
 
 const options = {
         chart: {
-          id: props.id + 'PriceInAYear'
+          id: props.id + 'PriceInAYear',
+          zoom: {
+                type: 'x',
+                enabled: true,
+                autoScaleYaxis: true
+              }
         },
         xaxis: {
-          categories: labels
+          categories: props.labels
         },
         title: {
           text: 'Price in a year',
@@ -25,7 +28,7 @@ const options = {
 
 const series = [{
         name: 'Price($)',
-        data: data
+        data: props.data
 }]
 
 

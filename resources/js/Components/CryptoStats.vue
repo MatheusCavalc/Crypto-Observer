@@ -3,9 +3,9 @@ const props = defineProps(['id']);
 
 const api_url = "https://api.coincap.io/v2/assets/" + props.id;
 const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  maximumFractionDigits: 0
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0
 });
 
 async function getCryptoPrice() {
@@ -31,19 +31,23 @@ getCryptoPrice();
 </script>
 
 <template>
-   <div class="col-span-2">
+    <div class="col-span-2">
         <p>Market Cap</p>
         <p id="marketCap"></p>
-   </div>
+    </div>
 
-   <div class="col-span-2">
+    <div class="col-span-2">
         <p>Fully Diluted Market Cap</p>
         <p id="FDMC"></p>
-   </div>
+    </div>
 
-   <div class="col-span-2">
-        <p>Volume <span class="bg-gray-100 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">24h</span></p>
+    <div class="col-span-2">
+        <p>Volume
+            <span class="bg-gray-100 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+                24h
+            </span>
+        </p>
         <p id="volumeUsd24Hr"></p>
-   </div>
+    </div>
 
 </template>

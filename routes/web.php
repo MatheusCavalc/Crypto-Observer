@@ -21,6 +21,7 @@ Route::get('/',[CryptoController::class, 'index'])->name('index.crypto');
 Route::get('/currencies/{id}', [CryptoController::class, 'show'])->name('show.crypto');
 Route::get('/ranking/exchanges', [ExchangeController::class, 'index'])->name('index.exchange');
 
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
