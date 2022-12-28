@@ -20,10 +20,9 @@ class CryptoController extends Controller
 
         $history = $service->showHistory($id);
 
-        //$labels = (array_map(fn($index) => str_split($index['date'], 10)[0], $history['data']));
-        $labels = (array_map(fn($index) => date("M 'j", strtotime($index['date'])), $history['data']));
-        $data = (array_map(fn($index) => explode('.', $index['priceUsd'])[0], $history['data']));
+        //$labels = (array_map(fn ($index) => date("M 'j", strtotime($index['date'])), $history['data']));
+        //$data = (array_map(fn ($index) => explode('.', $index['priceUsd'])[0], $history['data']));
 
-        return Inertia::render('Crypto', compact('crypto', 'labels', 'data'));
+        return Inertia::render('Crypto', compact('crypto'));
     }
 }

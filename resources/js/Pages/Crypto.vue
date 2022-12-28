@@ -7,7 +7,7 @@ import CryptoStats from '@/Components/CryptoStats.vue';
 import TDataBarStats from '@/Components/TDataBarStats.vue';
 import Chart from '@/Components/Chart.vue';
 
-const props = defineProps(['crypto', 'labels', 'data'])
+const props = defineProps(['crypto'])
 
 </script>
 
@@ -15,7 +15,7 @@ const props = defineProps(['crypto', 'labels', 'data'])
 
     <Head>
         <title>
-            {{ crypto.data.name }} price today, {{ crypto.data.symbol }} to USD live, marketcap and chart |
+            {{ name }} price today, {{ crypto.data.symbol }} to USD live, marketcap and chart |
         </title>
     </Head>
 
@@ -24,7 +24,7 @@ const props = defineProps(['crypto', 'labels', 'data'])
             <div class="sm:px-6 lg:px-8">
                 <Breadcrumb :coin="crypto.data.name">
                 </Breadcrumb>
-                <CryptoInfo :coin="crypto">
+                <CryptoInfo :crypto="crypto.data">
                 </CryptoInfo>
                 <div class="mt-6">
                     <div class="grid grid-cols-8 gap-4">
@@ -37,7 +37,7 @@ const props = defineProps(['crypto', 'labels', 'data'])
                         </div>
 
                         <div class="col-span-6">
-                            <Chart :labels="labels" :data="data" :id="crypto.data.name">
+                            <Chart :name="crypto.data.name" :id="crypto.data.id">
                             </Chart>
                         </div>
                         <div class="col-span-2"></div>
