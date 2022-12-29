@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Services\CoinCapapiService;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class CryptoController extends Controller
 {
-    public function index(CoinCapapiService $service)
+    public function index(CoinCapapiService $service, Request $request)
     {
-        $cryptos = $service->getCoins();
+        $cryptos = $service->getCoins($request->offset);
 
-        return Inertia::render('Index', compact('cryptos'));
+        $offset = $request->offset == null ? 0 : $request->offset;
+
+        return Inertia::render('Index', compact('cryptos', 'offset'));
     }
 
     public function show(CoinCapapiService $service, $id)

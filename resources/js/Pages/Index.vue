@@ -4,10 +4,12 @@ import Table from '@/Components/Table.vue';
 import THead from '@/Components/THead.vue';
 import TData from '@/Components/TData.vue';
 import TDataBar from '@/Components/TDataBar.vue';
+import TablePagination from '@/Components/TablePagination.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 
-const { filters } = defineProps(['cryptos'])
+const props = defineProps(['cryptos', 'offset'])
 
+console.log(props.offset)
 </script>
 
 <template>
@@ -56,6 +58,7 @@ const { filters } = defineProps(['cryptos'])
                         </tr>
                     </template>
                 </Table>
+                <TablePagination :page="offset"></TablePagination>
             </div>
         </div>
     </MainLayout>

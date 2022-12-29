@@ -5,12 +5,12 @@ const FractionDigits = 0
 
 const classBar = computed(() => {
     if (props.crypto.maxSupply != null && props.crypto.maxSupply != 0) {
-        return "w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-700"
+        return "w-full bg-gray-200 rounded-full h-1.5 mb-4"
     }
 })
 const classPer = computed(() => {
     if (props.crypto.maxSupply != null && props.crypto.maxSupply != 0) {
-        return "bg-blue-600 h-1.5 rounded-full dark:bg-blue-500"
+        return "bg-blue-600 h-1.5 rounded-full"
     }
 })
 const style = computed(() => {
