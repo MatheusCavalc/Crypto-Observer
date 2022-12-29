@@ -1,4 +1,6 @@
 <script setup>
+import { Link } from '@inertiajs/inertia-vue3';
+
 const props = defineProps(['page'])
 
 const previous = parseInt(props.page) - 20 < 0 ? '/?offset=0' : '/?offset=' + (parseInt(props.page) - 20)
@@ -35,25 +37,25 @@ const classNext = (page) => {
         <nav aria-label="Page navigation example">
             <ul class="inline-flex -space-x-px">
                 <li>
-                    <a :href="previous" :class="classPre($page.url == '/?offset=0' || $page.url == '/')">Previous</a>
+                    <Link :href="previous" :class="classPre($page.url == '/?offset=0' || $page.url == '/')" disabled>Previous</Link>
                 </li>
                 <li>
-                    <a href="/?offset=0" :class="classes($page.url == '/?offset=0' || $page.url == '/')">1</a>
+                    <Link href="/?offset=0" :class="classes($page.url == '/?offset=0' || $page.url == '/')">1</Link>
                 </li>
                 <li>
-                    <a href="/?offset=20" :class="classes($page.url == '/?offset=20')">2</a>
+                    <Link href="/?offset=20" :class="classes($page.url == '/?offset=20')">2</Link>
                 </li>
                 <li>
-                    <a href="/?offset=40" :class="classes($page.url == '/?offset=40')">3</a>
+                    <Link href="/?offset=40" :class="classes($page.url == '/?offset=40')">3</Link>
                 </li>
                 <li>
-                    <a href="/?offset=60" :class="classes($page.url == '/?offset=60')">4</a>
+                    <Link href="/?offset=60" :class="classes($page.url == '/?offset=60')">4</Link>
                 </li>
                 <li>
-                    <a href="/?offset=80" :class="classes($page.url == '/?offset=80')">5</a>
+                    <Link href="/?offset=80" :class="classes($page.url == '/?offset=80')">5</Link>
                 </li>
                 <li>
-                    <a :href="next" :class="classNext($page.url == '/?offset=80')">Next</a>
+                    <Link :href="next" :class="classNext($page.url == '/?offset=80')">Next</Link>
                 </li>
             </ul>
         </nav>

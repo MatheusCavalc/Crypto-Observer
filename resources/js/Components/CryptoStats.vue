@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from "vue";
 
-const marketCap = ref([])
-const FDMC = ref([])
-const volumeUsd24Hr = ref([])
+const marketCap = ref('')
+const FDMC = ref('')
+const volumeUsd24Hr = ref('')
 
 const props = defineProps(['id']);
 

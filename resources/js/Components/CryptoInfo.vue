@@ -2,9 +2,9 @@
 import { ref } from "vue";
 
 const props = defineProps(['crypto']);
-const classPer = ref([])
-const price = ref([])
-const percent24hrs = ref([])
+const classPer = ref('')
+const price = ref('')
+const percent24hrs = ref('')
 
 const api_url = "https://api.coincap.io/v2/assets/" + props.crypto.id;
 

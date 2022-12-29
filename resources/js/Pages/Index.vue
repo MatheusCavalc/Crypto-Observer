@@ -9,13 +9,12 @@ import { Link } from '@inertiajs/inertia-vue3';
 
 const props = defineProps(['cryptos', 'offset'])
 
-console.log(props.offset)
 </script>
 
 <template>
 
     <MainLayout>
-        <div class="py-12">
+        <div class="py-6">
             <div class="sm:px-6 lg:px-8">
                 <Table>
                     <template #headColumns>

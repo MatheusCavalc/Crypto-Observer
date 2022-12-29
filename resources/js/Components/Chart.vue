@@ -9,13 +9,13 @@ const props = defineProps(['name', 'id'])
 
 const labelsChart = ref([])
 const dataChart = ref([])
-const timeChart = ref([])
+const timeChart = ref('')
 
 const historyChart = (interval, key, timeC, format) => {
     const url = 'https://api.coincap.io/v2/assets/' + props.id + '/history?interval=' + interval
     axios.get(url).then(res => {
         const response = res.data
-        const data = response.data.map(index => index.priceUsd.split('.', 1))
+        const data = response.data.map(index => parseFloat(index.priceUsd).toFixed(2))
         const time = response.data.map(index => moment(index.date).format(format))
 
         dataChart.value = data.slice(key)
