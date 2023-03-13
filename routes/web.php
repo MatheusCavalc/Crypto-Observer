@@ -20,6 +20,7 @@ use Inertia\Inertia;
 Route::get('/',[CryptoController::class, 'index'])->name('index.crypto');
 Route::get('/currencies/{id}', [CryptoController::class, 'show'])->name('show.crypto');
 Route::get('/ranking/exchanges', [ExchangeController::class, 'index'])->name('index.exchange');
+Route::get('/refresh-data', [CryptoController::class, 'refresh'])->name('refresh.crypto');
 
 
 Route::get('/dashboard', function () {

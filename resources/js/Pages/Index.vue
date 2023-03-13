@@ -4,10 +4,23 @@ import Table from '@/Components/Table.vue';
 import THead from '@/Components/THead.vue';
 import TData from '@/Components/TData.vue';
 import TDataBar from '@/Components/TDataBar.vue';
-import TablePagination from '@/Components/TablePagination.vue';
 import { Link } from '@inertiajs/inertia-vue3';
+import { ref } from 'vue';
 
 const props = defineProps(['cryptos', 'offset'])
+
+const crypto_data = ref('')
+
+crypto_data.value = props.cryptos
+
+const refreshApiData = () => {
+    axios.get("/refresh-data").then((response) => {
+        crypto_data.value = response.data
+    });
+    setTimeout(() => refreshApiData(), 15000)
+}
+
+refreshApiData()
 
 </script>
 
@@ -26,7 +39,7 @@ const props = defineProps(['cryptos', 'offset'])
                         <THead type="normal" label="Circulating Supply" />
                     </template>
                     <template #tableRows>
-                        <tr v-for="crypto in cryptos.data" :key="crypto.rank">
+                        <tr v-for="crypto in crypto_data" :key="crypto.rank">
                             <TData type="first">
                                 {{ crypto.rank }}
                             </TData>
@@ -57,7 +70,6 @@ const props = defineProps(['cryptos', 'offset'])
                         </tr>
                     </template>
                 </Table>
-                <TablePagination :page="offset"></TablePagination>
             </div>
         </div>
     </MainLayout>
