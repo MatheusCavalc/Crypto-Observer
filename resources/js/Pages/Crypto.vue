@@ -20,7 +20,7 @@ const props = defineProps(['crypto'])
     </Head>
 
     <MainLayout>
-        <div class="py-12 bg-white">
+        <div class="py-12 bg-gray-50">
             <div class="sm:px-6 lg:px-8">
                 <Breadcrumb :coin="crypto.data.name">
                 </Breadcrumb>
