@@ -4,6 +4,19 @@ import NavLink from '@/Components/NavLink.vue';
 import { Link } from '@inertiajs/inertia-vue3';
 
 const showingNavigationDropdown = ref(false);
+let search = ref('')
+let cryptos = ref('')
+
+const searchCrypto = () => {
+    axios.get("/search/" + search.value).then((response) => {
+        cryptos.value = response.data
+        console.log(cryptos.value)
+    }).catch(error => {
+        cryptos.value = ''
+    })
+}
+
+console.log(cryptos.value)
 </script>
 
 <template>
@@ -28,18 +41,30 @@ const showingNavigationDropdown = ref(false);
                             <span class="sr-only">Search</span>
                         </button>
                         <div class="hidden relative md:block">
-                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor"
-                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="sr-only">Search icon</span>
+                            <div>
+                                <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                                    <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor"
+                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="sr-only">Search icon</span>
+                                </div>
+                                <input type="text" id="search-navbar" v-model="search" @keyup="searchCrypto"
+                                    class="block p-2 pl-10 w-64 text-gray-900 bg-gray-50 rounded-t-lg border-t border-r border-l border-gray-200 sm:text-sm focus:ring-gray-200 focus:border-gray-200 focus:bg-white focus:border-b-white"
+                                    placeholder="Search...">
                             </div>
-                            <input type="text" id="search-navbar"
-                                class="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Search...">
+
+                            <div class="border border-t-white border-gray-200 rounded-b-lg bg-white absolute w-64" v-if="cryptos.length > 0 || cryptos != ''">
+                                <p class="text-gray-400 text-xs pl-4 my-2">Cryptoassets</p>
+                                <div v-for="crypto, index in cryptos">
+                                    <Link :href="route('show.crypto', crypto.id)" v-if="index < 4" class="flex py-3 hover:bg-gray-100">
+                                    <p class="pl-4 font-semibold">{{ crypto.id }}</p>
+                                    <p class="pl-4 text-gray-400">{{ crypto.symbol }}</p>
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                         <button data-collapse-toggle="navbar-search" type="button"
                             class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
@@ -53,8 +78,7 @@ const showingNavigationDropdown = ref(false);
                             </svg>
                         </button>
                     </div>
-                    <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
-                        id="navbar-search">
+                    <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="navbar-search">
                         <div class="relative mt-3 md:hidden">
                             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                                 <svg class="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor"
@@ -81,8 +105,7 @@ const showingNavigationDropdown = ref(false);
                             <li>
                                 <div
                                     class="block py-2 pr-4 pl-3 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
-                                    <NavLink :href="route('index.exchange')"
-                                        :active="route().current('index.exchange')">
+                                    <NavLink :href="route('index.exchange')" :active="route().current('index.exchange')">
                                         Exchanges
                                     </NavLink>
                                 </div>
@@ -109,8 +132,7 @@ const showingNavigationDropdown = ref(false);
                     <div class="mb-6 md:mb-0">
                         <a href="https://flowbite.com/" class="flex items-center">
                             <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-8" alt="FlowBite Logo" />
-                            <span
-                                class="self-center text-2xl font-semibold whitespace-nowrap">Flowbite</span>
+                            <span class="self-center text-2xl font-semibold whitespace-nowrap">Flowbite</span>
                         </a>
                     </div>
                     <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -153,8 +175,8 @@ const showingNavigationDropdown = ref(false);
                 </div>
                 <hr class="my-6 border-gray-200 sm:mx-autolg:my-8" />
                 <div class="sm:flex sm:items-center sm:justify-between">
-                    <span class="text-sm text-gray-500 sm:text-center"> Data taken from <a
-                            href="https://docs.coincap.io/" class="hover:underline">Coincap api</a>.
+                    <span class="text-sm text-gray-500 sm:text-center"> Data taken from <a href="https://docs.coincap.io/"
+                            class="hover:underline">Coincap api</a>.
                     </span>
                     <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
                         <a href="#" class="text-gray-500 hover:text-gray-900">

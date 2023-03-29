@@ -23,6 +23,23 @@ class CryptoController extends Controller
         return $cryptos['data'];
     }
 
+    public function search(CoinCapapiService $service, $search)
+    {
+        $cryptos = $service->getCoins();
+
+        $arr = [];
+
+        foreach ($cryptos['data'] as $crypto) {
+            if (str_contains($crypto['id'], $search)) {
+                array_push($arr, [
+                    'id' => $crypto['id'],
+                    'symbol' => $crypto['symbol']]);
+            }
+        }
+
+        return $arr;
+    }
+
     public function show(CoinCapapiService $service, $id)
     {
         $crypto = $service->showCoin($id);
